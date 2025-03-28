@@ -294,6 +294,8 @@ process process_matrix {
     script:
     def mito_prefixes = params.mito_prefix.replaceAll(',', ' ')
     """
+    mkdir -p numba_cache
+    export NUMBA_CACHE_DIR=numba_cache
     export NUMBA_NUM_THREADS=${task.cpus}
     workflow-glue process_matrix \
         inputs/matrix*.hdf \
